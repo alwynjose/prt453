@@ -5,27 +5,27 @@ include('session.php');
 <html >
 <head>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="http://localhost/cdu/resources/images/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="shortcut icon" href="http://localhost/mfs/resources/images/favicon.ico" type="image/vnd.microsoft.icon" />
   <title>Lecturer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="http://localhost/cdu/css/style.css">
+  <link rel="stylesheet" href="http://localhost/mfs/css/style.css">
 
 
 </head>
 
 <body>
-  
- <div class="container">
 
- <img src="http://localhost/cdu/resources/images/cdu-logo.png" alt="Charles Darwin University" title="Charles Darwin University" width="230" height="120">
+<div class="container-fluid">
+
+
 <!-- Navigation Starts -->
 <nav class="navbar navbar-inverse materialize">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" data-toggle="tooltip" title="CDU Marking and Feedback System">CDU MFS</a>
+      <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="auto" title="CDU Marking and Feedback System">CDU MFS</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -49,32 +49,122 @@ include('session.php');
 
 </div>
 
-<div class="container">
 
+
+<div class="container-fluid">
+  <!-- ADMIN SIDEMENU LEFT STARTS -->
+  <div class="admin-sidemenu">
+     <img src="http://localhost/mfs/resources/images/cdu-logo.png" alt="Charles Darwin University" title="Charles Darwin University">
+      <div class="list-group">
+        <a href="#" class="list-group-item">First item</a>
+        <a href="#" class="list-group-item">Second item</a>
+        <a href="#" class="list-group-item">Third item</a>
+      </div>
+  </div>
+  <!-- ADMIN SIDEMENU LEFT ENDS -->
+
+  <!-- ADMIN PANEL RIGHT STARTS -->
+  <div class="admin-right">
+
+ <!--  Dashboard Information Display Starts -->
+<?php
+$con = mysql_connect("localhost", "root", "");  
+$selectdb = mysql_select_db("mfs",$con);  
+$result = mysql_query("SELECT ID FROM students");  
+$number_of_students = mysql_num_rows($result); 
+mysql_free_result($result); 
+$result = mysql_query("SELECT DISTINCT LID FROM lecturers");  
+$number_of_lecturers = mysql_num_rows($result); 
+mysql_free_result($result); 
+$result = mysql_query("SELECT MID FROM marksheet");  
+$number_of_markings = mysql_num_rows($result);
+mysql_free_result($result); 
+$result = mysql_query("SELECT SessionID FROM lecturers");  
+$number_of_sessions = mysql_num_rows($result);
+mysql_free_result($result);
+echo '
+<div class="container-fluid">
+  <div class="dashboard-info row">
+    <div class="col-md-3 col-sm-3 col-xs-3 dashboard-info-displays">
+      <div class="dashboard-info-display-colone">
+        <div class="dashboard-info-display">
+          <div class="dashboard-granular">
+            <div><span class="glyphicon glyphicon-education"></span></div>
+            <h3>No. of Students </h3>
+            <h2>'.$number_of_students.'</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-3 dashboard-info-displays">
+      <div class="dashboard-info-display-coltwo">
+        <div class="dashboard-info-display">
+          <div class="dashboard-granular">
+            <div><span class="glyphicon glyphicon-user"></span></div>
+            <h3>No. of Lecturers </h3>
+            <h2>'.$number_of_lecturers.'</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-3 dashboard-info-displays">
+      <div class="dashboard-info-display-colthree">
+        <div class="dashboard-info-display">
+          <div class="dashboard-granular">
+            <div><span class="glyphicon glyphicon-th-list"></span></div>
+            <h3>Total Markings</h3>
+            <h2>'.$number_of_markings.'</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-3 dashboard-info-displays">
+      <div class="dashboard-info-display-colfour">
+        <div class="dashboard-info-display">
+            <div><span class="glyphicon glyphicon-hdd"></span></div>
+            <h3>Total Sessions Created</h3>
+            <h2>'.$number_of_sessions.'</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div> 
+  <div class="clearfix"></div>';
+mysql_close($con);
+  ?>
+ <!--  Dashboard Information Display Ends -->
+
+
+<!-- TABLE Starts -->
+<div class="dasboard-table-display">
   <!-- Table Search Starts -->
   <div class="search-table col-xs-3">
   <input oninput="w3.filterHTML('#lecturertable', '.item', this.value)" type="text" placeholder="Search Table">
   </div>
   <!-- Table Search Ends -->
 
-            <!-- Table Starts -->
+            
   <table id="lecturertable" class="table table-bordered table-hover table-condensed table-responsive materialize">
     <thead>
-      <tr>
-        <th>Time</th>
+        <tr>
+        <th>Time <span class="glyphicon glyphicon-time"></span></th>
         <th>Family Name</th>
         <th>First Name</th>
-        <th>Status</th>
+        <th>Presentation</th>
+        <th>Status <span class="glyphicon glyphicon-stats"></span></th>
       </tr>
     </thead>
     <tbody>
 <?php
-$sql = "SELECT ID, LastName, FirstName, PreTimeStart, PreTimeEnd FROM students";
+$sql = "SELECT * FROM students";
 $result = mysql_query($sql, $connection);
 
 if (mysql_num_rows($result) > 0) {
      // output data of each row
      while($row = mysql_fetch_assoc($result)) {
+        $lastname = $row["LastName"];
+        $presentid = $row["PresentID"];
+        $studentidstart = $row["ID"];
         //stripping Last 3 Characters of the Time data type 00:0:00 Starts
          $pstart = substr($row["PreTimeStart"], 0, -3);
          $pEnd   = substr($row["PreTimeStart"], 0, -3);
@@ -83,8 +173,22 @@ if (mysql_num_rows($result) > 0) {
               <td>".$pstart." - ".$pEnd."</td>
               <td>". $row["LastName"]."</td>
               <td>". $row["FirstName"] ."</td>
-              <td><span class='label label-primary'>Marked</span></td>
-            </tr>";
+              <td>". $row["PresentID"] ."</td>";
+
+        $slastname = $row["FirstName"];
+        $countresult = mysql_query("SELECT SIDstart, COUNT(*) FROM marksheet WHERE Sln='$lastname' AND PresID='$presentid' AND SIDstart=$studentidstart", $connection);
+        $count = mysql_fetch_assoc($countresult);
+        $totalcount = $count["COUNT(*)"];
+        if ($totalcount == 0) {
+          echo "<td><span class='label label-danger'>Not Marked </span><a href='delete.php?studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Delete</a><a href='edit.php?studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td></tr>";
+        }else {
+          echo "<td><span class='badge'>".$totalcount."</span><span> Lecturers Marked </span><a href='delete.php?studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Delete</a><a href='edit.php?studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td></tr>";
+        }
+       
+          
+        
+
+
      }
 } else {
      echo "0 results";
@@ -134,6 +238,7 @@ mysql_close($connection);
       </tr> -->
     </tbody>
   </table>
+</div>
 <!-- Table Ends -->
 <!-- <div>  
       <ul class="pagination">
@@ -144,11 +249,12 @@ mysql_close($connection);
       <li><a href="#">5</a></li>
     </ul>
 </div> -->
-
+  </div>
+  <!-- ADMIN PANEL RIGHT ENDS -->
 </div>
 
-<footer class="container">
-  <p class="footy">Copyright © 2017 Charles Darwin University</p>
+<footer class="container-fluid">
+  <p class="footy">Copyright © 2017 Charles Darwin University. <?php echo $today = date("F j, Y"); ?></p>
 </footer>
 
 <!-- Initialize Tooltips Starts -->
@@ -159,7 +265,7 @@ $(document).ready(function(){
 </script>
 <!-- Initialize Tooltips Ends -->
 <!-- Table Search Starts -->
-<script src="http://localhost/cdu/js/w3.js"></script>
+<script src="http://localhost/mfs/js/w3.js"></script>
 <!-- Table Search Ends -->
 </body>
 </html>

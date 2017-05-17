@@ -14,10 +14,8 @@ $query = mysql_query("SELECT students.LastName, students.PresentID, $present_id.
 while($row = mysql_fetch_assoc($query))
 {
 
-      $lastname = $row["LastName"];
-      echo $lastname;
-      $presentid = $row["PresentID"];
-      echo $presentid;
+      $lastname = $row["LastName"];      
+      $presentid = $row["PresentID"];      
       $criteria1 = $row["c_1"];
       $criteria2 = $row["c_2"];
       $criteria3 = $row["c_3"];
@@ -29,8 +27,6 @@ while($row = mysql_fetch_assoc($query))
       $criteria4_max = $row["c_4_max"];
       $criteria5_max = $row["c_5_max"];
       $overallfeed = $row["feedback"];
-
-      echo $criteria1;
 
 
 echo '

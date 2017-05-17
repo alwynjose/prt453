@@ -7,10 +7,12 @@ session_start();// Starting Session
 // Storing Session
 $user_check=$_SESSION['login_user'];
 // SQL Query To Fetch Complete Information Of User
-$ses_sql=mysql_query("select FirstName, LastName from lecturers where SessionID='$user_check'", $connection);
+$ses_sql=mysql_query("select LFirstName, LLastName, LPresentID from lecturers where SessionID='$user_check'", $connection);
 $row = mysql_fetch_assoc($ses_sql);
-$login_session =$row['FirstName'];
-$login_lastname =$row['LastName'];
+$login_session =$row['LFirstName'];
+$login_lastname =$row['LLastName'];
+$login_presentation = $row['LPresentID'];
+
 if(!isset($login_session)){
 mysql_close($connection); // Closing Connection
 header('Location: index.php'); // Redirecting To Home Page

@@ -10,29 +10,31 @@ echo $preid;
 include_once("config.php");
 if(isset($_POST['submit'])){ // Fetching variables of the form which travels in URL
 
-$cr1 = $_POST['crit1'];
-$cr2 = $_POST['crit2'];
-$cr3 = $_POST['crit3'];
-$cr4 = $_POST['crit4'];
-$cr5 = $_POST['crit5'];	
-$fee1 = $_POST['feed1'];
-$fee2 = $_POST['feed2'];
-$fee3 = $_POST['feed3'];
-$fee4 = $_POST['feed4'];
-$fee5 = $_POST['feed5'];
-$feed = $_POST['feedfinal'];
-$total = $cr1+$cr2+$cr3+$cr4+$cr5;
+echo $cr1 = $_POST['crit1'];
+echo $cr2 = $_POST['crit2'];
+echo $cr3 = $_POST['crit3'];
+echo $cr4 = $_POST['crit4'];
+echo $cr5 = $_POST['crit5'];	
+echo $fee1 = $_POST['feed1'];
+echo $fee2 = $_POST['feed2'];
+echo $fee3 = $_POST['feed3'];
+echo $fee4 = $_POST['feed4'];
+echo $fee5 = $_POST['feed5'];
+echo $feed = $_POST['feedfinal'];
+echo $total = $cr1+$cr2+$cr3+$cr4+$cr5;
 
 
-$query1 = mysql_query("SELECT LastName, FirstName, PresentID FROM students WHERE ID ='$stid'", $connection);
+$query1 = mysql_query("SELECT LastName, FirstName, PresentID, StudentID FROM students WHERE ID ='$stid'", $connection);
 while($row = mysql_fetch_assoc($query1)) {
 
-	$lname = $row["LastName"];
-	$fname = $row["FirstName"];
+	echo $lname = $row["LastName"];
+	echo $fname = $row["FirstName"];
+	echo $studentno = $row["StudentID"];
 }
 
-$query2 = mysql_query("insert into test(b,c,d,e) values ($cr1, '$lname', $cr2, '$fee2')", $connection);
-echo "<br/><br/><span>Data Inserted successfully...!!</span>";
+$query2 = mysql_query("INSERT INTO marksheet(SIDstart, SID, Sln, Sfn, PresID, Lln, Lfn, M1, M1Feed, M2, M2Feed, M3, M3Feed, M4, M4Feed, M5, M5Feed, OverallFeed, TotalM) values ($stid,'$studentno', '$lname', '$fname', '$preid', '$login_lastname', '$login_session', $cr1, '$fee1', $cr2, '$fee2', $cr3, '$fee3', $cr4, '$fee4', $cr5, '$fee5', '$feed', $total)", $connection);
+header("location: lecturer.php"); // Redirecting To Other Page
+// echo "<br/><br/><span>Data Inserted successfully...!!</span>";
 // $name = $_POST['name'];
 // $email = $_POST['email'];
 // $contact = $_POST['contact'];

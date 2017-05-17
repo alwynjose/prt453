@@ -73,8 +73,8 @@ if (mysqli_connect_errno())
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 // SQL Query To Fetch Complete Information Of students
-$result = mysqli_query($con,"SELECT * FROM students");
-while($row = mysqli_fetch_array($result))
+$result = mysqli_query($con,"SELECT * FROM students WHERE PresentID='$login_presentation'");
+while($row = mysqli_fetch_assoc($result))
 {
   //stripping Last 3 Characters of the Time data type 00:0:00 Starts
 $pretimestart = substr($row["PreTimeStart"], 0, -3);
@@ -86,17 +86,16 @@ $presentid = $row["PresentID"];
 echo "<tr class='item'>
       <td>". $pretimestart."-".$pretimeend."</td>
         <td>" . $row["LastName"] ."</td>
-        <td>" . $row["FirstName"]."</td>
-        <td>";
+        <td>" . $row["FirstName"]."</td>";
 
-        $markcheck = mysqli_query($con,"SELECT TotalM FROM marksheet WHERE Sln='$lastname'");
+        $markcheck = mysqli_query($con,"SELECT TotalM FROM marksheet WHERE Sln='$lastname' AND Lln='$login_lastname' AND PresID='$presentid'");
         $markedornot = mysqli_fetch_assoc($markcheck);
         $totalmark =$markedornot['TotalM'];
         if (!isset($totalmark)) {
-          echo "<span class='label label-danger'>Not Marked</span><!-- Trigger/Open The Modal -->
-          <button id='myBtn1' onclick='loadDoc($studentid, &#39;$presentid&#39;)'>Open Modal</button></td></tr>";
+          echo "<td><span class='label label-danger'>Not Marked</span><!-- Trigger/Open The Modal -->
+          <button id='myBtn1' onclick='loadDoc($studentid, &#39;$presentid&#39;)'>Start Marking</button></td></tr>";
         } else {
-          echo "<span class='label label-primary'>Marked</span></td></tr>";
+          echo "<td><span class='label label-primary'>Marked</span></td></tr>";
         }
         
       
@@ -152,7 +151,7 @@ function loadDoc(stdid, preid) {
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">Close &times;</span>
-    <div id="demo">
+    <div id="demo" style="clear:both;">
            <!-- Data called in via XMLHttpRequest -->
     </div>    
   </div>
