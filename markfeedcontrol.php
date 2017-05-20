@@ -9,7 +9,7 @@ if(isset($_POST['student_id']) || isset($_POST['present_id']))
  $present_id=$_POST['present_id']; 
   
 // $query = mysql_query("SELECT LastName, PresentID FROM students WHERE ID='$student_id'", $connection);
-$query = mysql_query("SELECT students.LastName, students.PresentID, $present_id.* FROM students, $present_id WHERE students.ID ='$student_id'", $connection);
+$query = mysql_query("SELECT students.LastName, students.PresentID, presentation.* FROM students, presentation WHERE students.ID ='$student_id' AND students.PresentID = presentation.Presentation_name", $connection);
 
 while($row = mysql_fetch_assoc($query))
 {

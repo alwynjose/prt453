@@ -217,9 +217,89 @@ font-size: 24px;
 }
 .dasboard-table-display {
 	position: relative;
-	padding-top: 32px;
+	/*padding-top: 25px;*/
+}
+.add-student-details {
+
+}
+.add-student-details input{
+	background-color: white;
+	padding:5px;
+	color:black;
+}
+.add-student-form-detail {
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+}
+.add-student-form {
+
+}
+
+.add-student-form label{
+	color:white;
+}
+.add-student-form-submite-button {
+	text-align: center;
+	padding:15px;
+}
+
+.view-student-details{
+	background-color: white;
+    padding: 10px;
+    float:left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    min-width: 370px;
+}
+.view-student-details p{
+    font-weight: bold;
+    padding-left:10px;
+
+}
+.view-student-details h4{
+    font-size: 15px;
+    background-color: #ddd;
+    padding:10px;
+}
+.view-student-details-grid {
+float:left;
+position: relative;
+}
+.view-student-details-heading{
+	color: white;
+}
+.view-student-details-heading h4{
+	color: white;
+	margin-top: 0px;
+}
+.admin-side-menu-right {
+
+}
+.admin-side-menu-right a{
+	background-color: #222;
+	color: white;
+	border: 1px solid #555;
+}
+.lecturer-view-page-heading {
+
+}
+.lecturer-view-page-heading h4{
+	color: white;
+	font-size: 27px;
+}
+.lecturer-view-page-add-button {
+	float:left;
+	margin-bottom: 15px;
+}
+
+/*ADMIN panel ENDS*/
+/*STUDENT FEEDBACK PAGE BEGINS*/
+
+.student-right {
+	width: 82%;
+    margin: 0 auto;
 }
 
 
-
-/*ADMIN panel ENDS*/
+/*STUDENT FEEDBACK PAGE ENDS*/

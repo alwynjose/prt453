@@ -7,10 +7,13 @@ session_start();// Starting Session
 // Storing Session
 $user_check=$_SESSION['login_user'];
 // SQL Query To Fetch Complete Information Of User
-$ses_sql=mysql_query("select username, admin_firstname from login where username='$user_check'", $connection);
+$ses_sql=mysql_query("SELECT FirstName, LastName, ID, StudentID from students where StudentID='$user_check'", $connection);
 $row = mysql_fetch_assoc($ses_sql);
-$login_session =$row['username'];
-$login_firstnameadmin =$row['admin_firstname'];
+$login_session =$row['StudentID'];
+$login_firstname =$row['FirstName'];
+$login_lastname =$row['LastName'];
+$login_studentid =$row['ID'];
+
 if(!isset($login_session)){
 mysql_close($connection); // Closing Connection
 header('Location: index.php'); // Redirecting To Home Page

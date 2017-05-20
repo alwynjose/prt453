@@ -2,7 +2,7 @@
 include('login.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
-header("location: lecturer.php");
+header("location: student.php");
 }
 ?>
 <!DOCTYPE html>
@@ -26,14 +26,14 @@ header("location: lecturer.php");
 	<h1>CDU MFS Portal</h1>
 	<img src="http://localhost/mfs/resources/images/cdu-logo.png" alt="Charles Darwin University" title="Charles Darwin University" width="230" height="120">
     <form method="post">
-    	<input type="text" name="username" placeholder="Enter Session Key" required="required" />
+    	<input type="text" name="username" placeholder="Enter Student ID" required="required" />
         <!-- <input type="password" name="password" placeholder="Password" required="required" /> -->
         <button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Sign in</button>
     </form>
     <br>
       <p style="color: white; text-align: center;">Admin Login <a href="http://localhost/mfs/admin/"><span class="glyphicon glyphicon-log-in"></span></a>
       </p>
-      <p style="color: white; text-align: center;">Student Login <a href="http://localhost/mfs/student/"><span class="glyphicon glyphicon-log-in"></span></a>
+      <p style="color: white; text-align: center;">Marking Session <a href="http://localhost/mfs/"><span class="glyphicon glyphicon-log-in"></span></a>
       </p>
     <p class="footy">Copyright © 2017 Charles Darwin University</p>
 </div>

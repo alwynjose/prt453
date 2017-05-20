@@ -33,6 +33,8 @@ header("location: admin.php");
     <br>
       <p style="color: white; text-align: center;">Marking Session <a href="http://localhost/mfs/"><span class="glyphicon glyphicon-log-in"></span></a>
       </p>
+      <p style="color: white; text-align: center;">Student Login <a href="http://localhost/mfs/student/"><span class="glyphicon glyphicon-log-in"></span></a>
+      </p>
     <p class="footy">Copyright © 2017 Charles Darwin University</p>
 </div>
 </body>

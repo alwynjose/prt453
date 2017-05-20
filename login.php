@@ -26,7 +26,8 @@ if ($rows == 1) {
 $_SESSION['login_user']=$username; // Initializing Session
 header("location: lecturer.php"); // Redirecting To Other Page
 } else {
-$error = "Username or Password is invalid";
+$error = "<p style='color:white; text-align:center;margin-top:50px; font-size:15px;'><b><span class='glyphicon glyphicon-warning-sign'></span> Invalid Session ID</b></p>";
+echo $error;
 }
 mysql_close($connection); // Closing Connection
 }
