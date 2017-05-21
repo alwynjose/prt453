@@ -50,7 +50,7 @@ $querystoreavg = mysql_query("UPDATE average SET MarkingsNumber=$numberofmarking
 } else { //if it student does not exist in the table then insert
 $numberofmarkings = 1;	
 $average = $total;
-$querystoreavg = mysql_query("INSERT INTO average(studentidavg, stdtavglastname, stdavgfirstname, MarkingsNumber, PresentIDavg, AverageScore) values ($stid, '$lname', '$fname', $numberofmarkings, '$preid', $average)", $connection);
+$querystoreavg = mysql_query("INSERT INTO average(studentidavg, studentnumberavg, stdtavglastname, stdavgfirstname, MarkingsNumber, PresentIDavg, AverageScore) values ($stid, '$studentno', '$lname', '$fname', $numberofmarkings, '$preid', $average)", $connection);
 }
 
 

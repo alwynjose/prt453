@@ -1,9 +1,10 @@
   <div class="admin-right">
+ 
 
  <!--  Dashboard Information Display Starts -->
 <?php
-$con = mysql_connect("localhost", "root", "");  
-$selectdb = mysql_select_db("mfs",$con);  
+// $con = mysql_connect("localhost", "root", "");  
+// $selectdb = mysql_select_db("mfs",$con);  
 $result = mysql_query("SELECT ID FROM students");  
 $number_of_students = mysql_num_rows($result); 
 mysql_free_result($result); 
@@ -64,7 +65,7 @@ echo '
   </div>
  </div> 
   <div class="clearfix"></div>';
-mysql_close($con);
+// mysql_close($con);
   ?>
  <!--  Dashboard Information Display Ends -->
 
@@ -96,7 +97,7 @@ mysql_close($con);
     </thead>
     <tbody>
 <?php
-$sql = "SELECT * FROM students Orders LIMIT 10";
+$sql = "SELECT * FROM students Orders LIMIT 20";
 $result = mysql_query($sql, $connection);
 
 if (mysql_num_rows($result) > 0) {
@@ -107,7 +108,7 @@ if (mysql_num_rows($result) > 0) {
         $studentidstart = $row["ID"];
         //stripping Last 3 Characters of the Time data type 00:0:00 Starts
          $pstart = substr($row["PreTimeStart"], 0, -3);
-         $pEnd   = substr($row["PreTimeStart"], 0, -3);
+         $pEnd   = substr($row["PreTimeEnd"], 0, -3);
         //stripping Last 3 Characters of the Time data type 00:0:00 Ends
         echo "<tr class='item'>
               <td>".$pstart." - ".$pEnd."</td>
@@ -120,9 +121,9 @@ if (mysql_num_rows($result) > 0) {
         $count = mysql_fetch_assoc($countresult);
         $totalcount = $count["COUNT(*)"];
         if ($totalcount == 0) {
-          echo "<td><span class='label label-danger'>Not Marked </span><a href='admin.php?view=view&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> View</a><a href='admin.php?view=edit&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td></tr>";
+          echo "<td><span class='label label-danger'>Not Marked </span><a href='admincontroldelete.php?studentiddel=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-remove-circle'></span> Delete</a><a href='admin.php?view=view&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span> View</a><a href='admin.php?view=edit&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td></tr>";
         }else {
-          echo "<td><span class='badge'>".$totalcount."</span><span> Lecturers Marked </span><a href='admin.php?view=view&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> View</a><a href='admin.php?view=edit&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td></tr>";
+          echo "<td><span class='badge'>".$totalcount."</span><span> Lecturers Marked </span><a href='admincontroldelete.php?studentiddel=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-remove-circle'></span> Delete</a><a href='admin.php?view=view&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span> View</a><a href='admin.php?view=edit&studid=".$studentidstart."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td></tr>";
         }
        
           

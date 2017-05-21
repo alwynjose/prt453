@@ -64,7 +64,7 @@ if (mysql_num_rows($result) > 0) {
 
         
 
-        echo "<td>". $presentid."<a href='admin.php?view=lviewindi&lectid=".$lectureridentno."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> View</a><a href='admin.php?view=ledit&lectid=".$lectureridentno."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td>";
+        echo "<td>". $presentid."<a href='admincontroldelete.php?lectureiddel=".$lectureridentno."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-remove-circle'></span> Delete</a><a href='admin.php?view=lviewindi&lectid=".$lectureridentno."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span> View</a><a href='admin.php?view=ledit&lectid=".$lectureridentno."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td>";
 
      }
 } else {

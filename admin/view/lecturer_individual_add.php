@@ -58,17 +58,32 @@ echo '
           </div> 
         </div> 
         <div class="form-group">
-          <label class="col-sm-2 control-label">Session ID</label>
+          <label class="col-sm-2 control-label">Session Key</label>
           <div class="col-sm-5"> 
-          <input class="form-control" type="text" name="lecsessionidadd" placeholder=""  />
+          <input id="sessionnumberenter" class="form-control" type="text" name="lecsessionidadd" placeholder=""/>
+          <span class="help-block" style="color:white;">You can use the session key generated through "GENERATE SESSION KEY" button below.</span>
           </div> 
           
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Presentation Allotted</label>
           <div class="col-sm-5"> 
-          <input class="form-control" type="text" name="lecpresentnameadd" placeholder="" required="required" />
+          ';
+
+          $sql1 = "SELECT Presentation_name FROM presentation";
+          $result1 = mysql_query($sql1,$connection);
+
+          echo '<select name="lecpresentnameadd" class="form-control">
+          <option value=""></option>';
+          while ($row = mysql_fetch_array($result1)) {
+              echo '<option value="'. $row['Presentation_name'] .'">' . $row['Presentation_name'] .'</option>';
+          }
+          echo '</select>';
+
+          echo '
+          <span class="help-block" style="color:white;">If you cannot find the presentation name in the drop down list, <a href="admin.php?view=padd"></br>create one here.</a></span>
           </div> 
+
         </div>
       
       <div class="add-student-form-submite-button">
@@ -84,5 +99,21 @@ echo '
 
 
 ?>
+<div class="create-session">
+    <div class="create-session-button">
+      <button class="btn btn-default btn-large" onclick="createSession()">CLICK TO GENERATE SESSION KEY</button>
+    </div>
+    <div class="create-session-number">
+      <p id="sessionnumber"></p>
+    </div>
+</div>
+<script>
+function createSession() {
+    var x = document.getElementById("sessionnumber")
+    
+    x.innerHTML = Math.floor((Math.random() * 1000000) + 10000);
+    document.getElementById("sessionnumberenter").value = x.innerHTML;
+}
+</script>
  </div>
 

@@ -37,6 +37,7 @@ include('session.php');
       <!-- <li><a href="#">Page 1</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" data-toggle="tooltip" data-placement="auto" title="Date"><span class="glyphicon glyphicon-calendar"></span> <?php echo $today = date("F j, Y"); ?></a></li>
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome, <?php echo $login_session; ?></a></li>
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>

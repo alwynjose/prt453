@@ -79,7 +79,7 @@ $result = mysql_query($sql2, $connection);
 mysql_free_result($result); 
 echo '<div class="clearfix"></div>
       <div class="view-student-details-heading">
-            <h4><span class="glyphicon glyphicon-list-alt"></span> Student Marksheet Card</h4>
+            <h4><span class="glyphicon glyphicon-list-alt"></span> Student Score Cards</h4>
           </div>';
 
 $sql3 = "SELECT * FROM marksheet WHERE SIDstart=$studidview";

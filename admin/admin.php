@@ -28,7 +28,7 @@ include('session.php');
       <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="auto" title="CDU Marking and Feedback System">CDU MFS</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="admin.php" data-toggle="tooltip" data-placement="auto" title="Dashboard"><span class="glyphicon glyphicon-home"></span></a></li>
+      <li><a href="admin.php" data-toggle="tooltip" data-placement="auto" title="Dashboard"><span class="glyphicon glyphicon-home"></span></a></li>      
       <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
@@ -39,6 +39,7 @@ include('session.php');
       <!-- <li><a href="#">Page 1</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" data-toggle="tooltip" data-placement="auto" title="Date"><span class="glyphicon glyphicon-calendar"></span> <?php echo $today = date("F j, Y"); ?></a></li>
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome, <?php echo $login_firstnameadmin; ?></a></li>
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
@@ -58,11 +59,11 @@ include('session.php');
      <img src="http://localhost/mfs/resources/images/cdu-logo.png" alt="Charles Darwin University" title="Charles Darwin University">
      <div class="admin-side-menu-right">
       <div class="list-group">
-        <a href="admin.php" class="list-group-item">Dashboard</a>
-        <a href="admin.php?view=pview" class="list-group-item">Presentation</a>
-        <a href="admin.php?view=lview" class="list-group-item">Lecturers</a>
-        <a href="admin.php" class="list-group-item">Student</a>
-        <a href="admin.php?view=report" class="list-group-item">Report</a>
+        <a href="admin.php" class="list-group-item"><span style="padding-right:10px;" class="glyphicon glyphicon-dashboard"></span>Dashboard</a>
+        <a href="admin.php?view=pview" class="list-group-item"><span style="padding-right:10px;" class="glyphicon glyphicon-blackboard"></span>Presentation</a>
+        <a href="admin.php?view=lview" class="list-group-item"><span style="padding-right:10px;" class="glyphicon glyphicon-user"></span>Lecturers</a>
+        <a href="admin.php" class="list-group-item"><span style="padding-right:10px;" class="glyphicon glyphicon-education"></span>Student</a>
+        <a href="admin.php?view=report" class="list-group-item"><span style="padding-right:10px;" class="glyphicon glyphicon-export"></span>Report</a>
       </div>
      </div>
   </div>
@@ -120,7 +121,7 @@ include "view/dashboard.php";
 </div>
 
 <footer class="container-fluid">
-  <p class="footy">Copyright © 2017 Charles Darwin University. <?php echo $today = date("F j, Y"); ?></p>
+  <p class="footy">Copyright © 2017 Charles Darwin University.</p>
 </footer>
 
 <!-- Initialize Tooltips Starts -->

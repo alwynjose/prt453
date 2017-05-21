@@ -67,7 +67,7 @@ if (mysql_num_rows($result) > 0) {
         
 
         echo "<tr class='item'>
-              <td style='color:blue;font-weight:bold;'>". $Presentationname."<a href='admin.php?view=pedit&pid=".$presentationid."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a></td>
+              <td style='color:blue;font-weight:bold;'><span>".$Presentationname." </span><span style='float:left;'><a style='margin-bottom:5px;' href='admin.php?view=pedit&pid=".$presentationid."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-edit'></span> Edit</a><a href='admincontroldelete.php?presentiddel=".$presentationid."' class='btn btn-info btn-xs pull-right'><span class='glyphicon glyphicon-remove-circle'></span> Delete</a></span></td>
               <td>". $Criteria1."</td>
               <td>". $Criteria1max."</td>
               <td>". $Criteria2."</td>

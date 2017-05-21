@@ -9,12 +9,14 @@ if(isset($_POST['student_id']) || isset($_POST['present_id']))
  $present_id=$_POST['present_id']; 
   
 // $query = mysql_query("SELECT LastName, PresentID FROM students WHERE ID='$student_id'", $connection);
-$query = mysql_query("SELECT students.LastName, students.PresentID, presentation.* FROM students, presentation WHERE students.ID ='$student_id' AND students.PresentID = presentation.Presentation_name", $connection);
+$query = mysql_query("SELECT students.LastName, students.FirstName, students.StudentID, students.PresentID, presentation.* FROM students, presentation WHERE students.ID ='$student_id' AND students.PresentID = presentation.Presentation_name", $connection);
 
 while($row = mysql_fetch_assoc($query))
 {
 
-      $lastname = $row["LastName"];      
+      $lastname = $row["LastName"];   
+      $firstname = $row["FirstName"]; 
+      $studentno = $row["StudentID"];    
       $presentid = $row["PresentID"];      
       $criteria1 = $row["c_1"];
       $criteria2 = $row["c_2"];
@@ -28,17 +30,22 @@ while($row = mysql_fetch_assoc($query))
       $criteria5_max = $row["c_5_max"];
       $overallfeed = $row["feedback"];
 
+      $firstname = strtoupper($firstname);
+      $lastname = strtoupper($lastname);
+
 
 echo '
 <div class="feedbackform">
-
+<div class="feedbackform-student-details">
+  <p><span class="glyphicon glyphicon-education"></span> STUDENT NAME: <span style="font-weight:bold;">'.$firstname.' '.$lastname.' </span> || STUDENT NO: <span style="font-weight:bold;">'.$studentno.'</span> || PRESENTATION: <span style="font-weight:bold;">'.$presentid.'</span></p>
+</div>
 <!-- Marking Criteria Starts -->
 <form action="markfeedsave.php?stid='.$student_id.'&preid='.$presentid.'" method="post">
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">'.$criteria1.'<span style="float:right;" id="demo1"></span></a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><span class="glyphicon glyphicon-circle-arrow-down" style="padding-right:5px;"></span>'.$criteria1.'<span style="float:right;" id="demo1"></span></a>
         </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse">
@@ -56,7 +63,7 @@ echo '
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">'.$criteria2.'<span style="float:right;" id="demo2"></span></a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><span class="glyphicon glyphicon-circle-arrow-down" style="padding-right:5px;"></span>'.$criteria2.'<span style="float:right;" id="demo2"></span></a>
         </h4>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
@@ -74,7 +81,7 @@ echo '
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">'.$criteria3.' <span style="float:right;" id="demo3"></span></a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><span class="glyphicon glyphicon-circle-arrow-down" style="padding-right:5px;"></span>'.$criteria3.' <span style="float:right;" id="demo3"></span></a>
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">
@@ -92,7 +99,7 @@ echo '
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">'.$criteria4.'<span style="float:right;" id="demo4"></span></a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><span class="glyphicon glyphicon-circle-arrow-down" style="padding-right:5px;"></span>'.$criteria4.'<span style="float:right;" id="demo4"></span></a>
         </h4>
       </div>
       <div id="collapse4" class="panel-collapse collapse">
@@ -110,7 +117,7 @@ echo '
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">'.$criteria5.'<span style="float:right;" id="demo5"></span></a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"><span class="glyphicon glyphicon-circle-arrow-down" style="padding-right:5px;"></span>'.$criteria5.'<span style="float:right;" id="demo5"></span></a>
         </h4>
       </div>
       <div id="collapse5" class="panel-collapse collapse">
@@ -128,7 +135,7 @@ echo '
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">'.$overallfeed.'</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6"><span class="glyphicon glyphicon-circle-arrow-down" style="padding-right:5px;"></span>'.$overallfeed.'</a>
         </h4>
       </div>
       <div id="collapse6" class="panel-collapse collapse">
@@ -144,7 +151,7 @@ echo '
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse7" onclick="myFunction1()">View Total Score <span style="float:right;" class="glyphicon glyphicon-list-alt"></span></a>
+          <span style="padding-right:5px;" class="glyphicon glyphicon-list-alt pull-left"></span><a style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#collapse7" onclick="myFunction1('.$criteria1_max.','.$criteria2_max.','.$criteria3_max.','.$criteria4_max.','.$criteria5_max.')"> View Total Score</a>
         </h4>
       </div>
       <div id="collapse7" class="panel-collapse collapse">

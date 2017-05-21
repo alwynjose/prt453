@@ -26,7 +26,7 @@ include('session.php');
       <a class="navbar-brand" href="#" data-toggle="tooltip" title="CDU Marking and Feedback System">CDU MFS</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+      <!-- <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li> -->
       <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
@@ -37,6 +37,7 @@ include('session.php');
       <!-- <li><a href="#">Page 1</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" data-toggle="tooltip" data-placement="auto" title="Date"><span class="glyphicon glyphicon-calendar"></span> <?php echo $today = date("F j, Y"); ?></a></li>
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome, <?php echo $login_session; ?></a></li>
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
@@ -93,7 +94,7 @@ echo "<tr class='item'>
         $totalmark =$markedornot['TotalM'];
         if (!isset($totalmark)) {
           echo "<td><span class='label label-danger'>Not Marked</span><!-- Trigger/Open The Modal -->
-          <button id='myBtn1' onclick='loadDoc($studentid, &#39;$presentid&#39;)'>Start Marking</button></td></tr>";
+          <button id='myBtn1' onclick='loadDoc($studentid, &#39;$presentid&#39;)'><span class='glyphicon glyphicon-modal-window'></span> Start Marking</button></td></tr>";
         } else {
           echo "<td><span class='label label-primary'>Marked</span></td></tr>";
         }
@@ -164,7 +165,7 @@ function loadDoc(stdid, preid) {
 
 <footer class="container">
 
-  <p class="footy">Copyright © 2017 Charles Darwin University</p>
+  <p class="footy">Copyright © 2017 Charles Darwin University.</p>
 </footer>
 
 <!-- Initialize Tooltips Starts -->
@@ -214,14 +215,14 @@ window.onclick = function(event) {
 
 <!-- Validator Starts -->
 <script>
-function myFunction() {
+function myFunction(c1,c2,c3,c4,c5) {
     var x1, x2, x3, x4, x5, text1, text2, text3, text4, text5;
     var total = 0;
     // Get the value of the input field with id="ex1"
     x1 = document.getElementById("ex1").value;
 
     // If x1 is Not a Number or less than one or greater than 15
-    if (isNaN(x1) || x1 < 1 || x1 > 15) {
+    if (isNaN(x1) || x1 < 1 || x1 > c1) {
         text1 = "<span class='label label-warning'>Enter a valid score</span>";
     } else {
         text1 = "<span class='label label-primary'>Validated</span>";
@@ -232,7 +233,7 @@ function myFunction() {
     x2 = document.getElementById("ex2").value;
 
     // If x2 is Not a Number or less than one or greater than 25
-    if (isNaN(x2) || x2 < 1 || x2 > 25) {
+    if (isNaN(x2) || x2 < 1 || x2 > c2) {
         text2 = "<span class='label label-warning'>Enter a valid score</span>";
     } else {
         text2 = "<span class='label label-primary'>validated</span>";
@@ -243,7 +244,7 @@ function myFunction() {
     x3 = document.getElementById("ex3").value;
 
     // If x3 is Not a Number or less than one or greater than 30
-    if (isNaN(x3) || x3 < 1 || x3 > 30) {
+    if (isNaN(x3) || x3 < 1 || x3 > c3) {
         text3 = "<span class='label label-warning'>Enter a valid score</span>";
     } else {
         text3 = "<span class='label label-primary'>validated</span>";
@@ -254,7 +255,7 @@ function myFunction() {
     x4 = document.getElementById("ex4").value;
 
     // If x4 is Not a Number or less than one or greater than 10
-    if (isNaN(x4) || x4 < 1 || x4 > 10) {
+    if (isNaN(x4) || x4 < 1 || x4 > c4) {
         text4 = "<span class='label label-warning'>Enter a valid score</span>";
     } else {
         text4 = "<span class='label label-primary'>validated</span>";
@@ -265,7 +266,7 @@ function myFunction() {
     x5 = document.getElementById("ex5").value;
 
     // If x5 is Not a Number or less than one or greater than 20
-    if (isNaN(x5) || x5 < 1 || x5 > 20) {
+    if (isNaN(x5) || x5 < 1 || x5 > c5) {
         text5 = "<span class='label label-warning'>Enter a valid score</span>";
     } else {
         text5 = "<span class='label label-primary'>validated</span>";
@@ -275,11 +276,12 @@ function myFunction() {
     
       
 }
-function myFunction1() { 
-  myFunction(); 
+function myFunction1(c1,c2,c3,c4,c5) { 
+  myFunction(c1,c2,c3,c4,c5); 
   document.getElementById("demototal").innerHTML = "";
   var x1, x2, x3, x4, x5;
     var total = 0;
+     console.log(c1,c2,c3,c4,c5);
     x1 = document.getElementById("ex1").value;
     x2 = document.getElementById("ex2").value;
     x3 = document.getElementById("ex3").value;
@@ -295,7 +297,7 @@ function myFunction1() {
         
     }
 
-    if ((isNaN(x1) || x1 < 1 || x1 > 15) || (isNaN(x2) || x2 < 1 || x2 > 25) || (isNaN(x3) || x3 < 1 || x3 > 30) || (isNaN(x4) || x4 < 1 || x4 > 10) || (isNaN(x5) || x5 < 1 || x5 > 20)) {
+    if ((isNaN(x1) || x1 < 1 || x1 > c1) || (isNaN(x2) || x2 < 1 || x2 > c2) || (isNaN(x3) || x3 < 1 || x3 > c3) || (isNaN(x4) || x4 < 1 || x4 > c4) || (isNaN(x5) || x5 < 1 || x5 > c5)) {
       document.getElementById("test").innerHTML = "";
     } else {
       document.getElementById("test").innerHTML = '<button type="submit" name="submit" class="btn btn-primary btn-md">Submit</button>';

@@ -16,11 +16,11 @@ if(isset($_GET['sessioniddel'])){ //delete session id from table lecturers
 	<h4>Reports</h4>
 </div>
 <div class="lecturer-view-page-add-button">
-<a href="downloadmarksheet.php?name=MFS_Complete_Marksheet" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-file"></span> Download Complete Marsheet</a>
+<a href="downloadmarksheet.php?name=MFS_Complete_Marksheet" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-download-alt"></span> Download Complete Marksheet</a>
 </div>
 <div class="clearfix"></div>
 <div class="lecturer-view-page-add-button">
-<a href="downloadaverage.php?name=MFS_Average_Marksheet" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-file"></span> Download Average Marks</a>
+<a href="downloadaverage.php?name=MFS_Average_Marksheet" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-download-alt"></span> Download Average Marks</a>
 </div>
 <div class="clearfix"></div>
 <div class="dasboard-table-display">

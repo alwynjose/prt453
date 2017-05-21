@@ -7,16 +7,18 @@ if(isset($_POST['submit'])){
 $stdlnameadd=$_POST['studlnameadd'];
 $stdfnameadd=$_POST['studfnameadd'];
 $stdpresentadd=$_POST['presentnameadd'];
+$stdtimeadd=$_POST['presenttimestart'];
+$stdtimeaddstop=$_POST['presenttimeend'];
 
 
 //checking if student ID is empty
   if (!isset($_POST['studidadd']) || empty($_POST['studidadd'])) {
     $stdidadd="NULL";
-    $querytoupdatenull = "UPDATE students SET LastName='$stdlnameadd', FirstName='$stdfnameadd', StudentID=$stdidadd, PresentID='$stdpresentadd'  WHERE ID=$studentidedit";
+    $querytoupdatenull = "UPDATE students SET LastName='$stdlnameadd', FirstName='$stdfnameadd', StudentID=$stdidadd, PresentID='$stdpresentadd', PreTimeStart='$stdtimeadd', PreTimeEnd='$stdtimeaddstop'  WHERE ID=$studentidedit";
     
     } else {
     $stdidadd=$_POST['studidadd'];
-    $querytoupdatenull = "UPDATE students SET LastName='$stdlnameadd', FirstName='$stdfnameadd', StudentID='$stdidadd', PresentID='$stdpresentadd'  WHERE ID=$studentidedit";
+    $querytoupdatenull = "UPDATE students SET LastName='$stdlnameadd', FirstName='$stdfnameadd', StudentID='$stdidadd', PresentID='$stdpresentadd', PreTimeStart='$stdtimeadd', PreTimeEnd='$stdtimeaddstop'  WHERE ID=$studentidedit";
     } 
 
 $con = mysql_connect("localhost", "root", "");  
@@ -67,13 +69,43 @@ if (mysql_num_rows($result) > 0) {
           <label class="col-sm-2 control-label">Student ID</label>
           <div class="col-sm-5"> 
           <input class="form-control" type="text" name="studidadd" placeholder="" value="'.$studidedit.'"/>
-          </div> 
           <span class="help-block" style="color:white;">Enter Student ID starting with "s". Eg: s200010</span>
+          </div> 
+          
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Presentation Name</label>
+          <div class="col-sm-5"> ';
+
+          // <input class="form-control" type="text" name="presentnameadd" placeholder="" required="required" value="'.$presentidedit.'"/>
+
+          $sql1 = "SELECT Presentation_name FROM presentation WHERE Presentation_name <> '$presentidedit'";
+          $result1 = mysql_query($sql1,$connection);
+
+          echo '<select name="presentnameadd" class="form-control">
+          <option value="'.$presentidedit.'">'.$presentidedit.'</option>
+          <option value=""></option>';
+          while ($row = mysql_fetch_array($result1)) {
+              echo '<option value="'. $row['Presentation_name'] .'">' . $row['Presentation_name'] .'</option>';
+          }
+          echo '</select>';
+
+
+          echo '
+          <span class="help-block" style="color:white;">If you cannot find the presentation name in the drop down list, <a href="admin.php?view=padd"></br>create one here.</a></span>
+          </div> 
+
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Time Starts</label>
           <div class="col-sm-5"> 
-          <input class="form-control" type="text" name="presentnameadd" placeholder="" required="required" value="'.$presentidedit.'"/>
+          <input class="form-control" type="time" name="presenttimestart" placeholder=""  value="'.$pstartedit.'"/>
+          </div> 
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Time Ends</label>
+          <div class="col-sm-5"> 
+          <input class="form-control" type="time" name="presenttimeend" placeholder=""  value="'.$pEndedit.'"/>
           </div> 
         </div>
       
